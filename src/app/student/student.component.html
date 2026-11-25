@@ -1,0 +1,80 @@
+<hr>
+<div class="row mt-4">
+    <div class="col-md-8 offset-2">
+        <div class="card">
+            <h3 class="text-center">Student Form</h3>
+            <div class="card-body">
+                <div class="form-group">
+                    <label for="fname">Name</label>
+                    <input type="text" class="form-control" #fname>
+                </div>
+                 <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="text" class="form-control" #email>
+                </div>
+                 <div class="form-group">
+                    <label for="age">Age</label>
+                    <input type="text" class="form-control" #age>
+                </div>
+                 <div class="form-group">
+                    <label for="city">city</label>
+                    <input type="text" class="form-control" #city>
+                </div>
+                 <div class="form-group">
+                    <label for="course">Course</label>
+                    <input type="text" class="form-control" #course>
+                </div>
+                 <div class="form-group">
+                    <label for="course">IsActive</label>
+                    <select class="form-control" #isActive >
+                        <option value="yes">Yes</option>
+                        <option value="no">No</option>
+                    </select>
+                </div>
+                <button *ngIf="!isEditmode" class="w-100" mat-raised-button color="primary" (click)="addTodo()" >Add
+            Student</button>
+        <button *ngIf="isEditmode" class="w-100" mat-raised-button color="primary" (click)="onUpdate()">Update Student</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row mt-4">
+    <div class="col-md-8 offset-2">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Sr No.</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Age</th>
+                    <th>City</th>
+                    <th>Course</th>
+                    <th>IsActive</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let stu of studentArr; let i = index">
+                    <td>{{i + 1}}</td>
+                    <td>{{stu.name}}</td>
+                    <td>{{stu.email}}</td>
+                    <td>{{stu.age}}</td>
+                    <td>{{stu.city}}</td>
+                    <td>{{stu.course}}</td>
+                    <td>{{stu.isActive}}</td>
+                    <td> <button class=" mr-2" mat-mini-fab color="primary"
+                        aria-label="Example icon button with a menu icon" (click)="onEdit(stu)">
+                        <mat-icon>edit</mat-icon>
+                    </button>
+                    </td>
+                    <td> <button class=" mr-2" mat-mini-fab color="warn"
+                        aria-label="Example icon button with a menu icon" [disabled]="isEditId === stu.id" (click)="onRemove(stu.id)" >
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
